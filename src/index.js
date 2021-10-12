@@ -1,8 +1,5 @@
 import Notiflix from "../node_modules/notiflix";
-/* import _default from '../node_modules/simplelightbox/dist/simple-lightbox'; */
-import SimpleLightbox from "simplelightbox"; 
 const basicLightbox = require('basiclightbox')
-import 'simplelightbox/dist/simple-lightbox.min.css';
 const axios = require('axios').default;
 const qs = (selector) => document.querySelector(selector);
 let page = 2
@@ -74,14 +71,6 @@ moreBtn.addEventListener("click", async() => {
   console.log(page)
   if(page==15){Notiflix.Notify.failure(`We're sorry, but you've reached the end of search results.`)}
 });
-
-/* let gallery = new SimpleLightbox(".gallery a");
-gallery.on('show.simplelightbox', function () {
-	preventDefault()
-});
-gallery.refresh()
-galleryGrid.addEventListener("click", preventDefault()) */
-
 function instance(event){
   event.preventDefault();
   const imageSource = event.target.dataset.source
