@@ -1,6 +1,7 @@
 import Notiflix from "../node_modules/notiflix";
 /* import _default from '../node_modules/simplelightbox/dist/simple-lightbox'; */
 import SimpleLightbox from "simplelightbox"; 
+const basicLightbox = require('basiclightbox')
 import 'simplelightbox/dist/simple-lightbox.min.css';
 const axios = require('axios').default;
 const qs = (selector) => document.querySelector(selector);
@@ -25,7 +26,7 @@ function renderUserListItems(arr) {
   arr.forEach(
     (im) => markup +=`<div class="gallery__item" >
     <a  href="${im.largeImageURL}">
-    <img class="gallery__image" src="${im.webformatURL}" alt="${im.tags}" loading="lazy" />
+    <img class="gallery__image" src="${im.webformatURL}" data-source="${im.largeImageURL}" alt="${im.tags}" loading="lazy" />
       </a><div class="info">
         <div class="info-item">
         <b>Likes</b>
@@ -74,10 +75,24 @@ moreBtn.addEventListener("click", async() => {
   if(page==15){Notiflix.Notify.failure(`We're sorry, but you've reached the end of search results.`)}
 });
 
-let gallery = new SimpleLightbox(".gallery a");
+/* let gallery = new SimpleLightbox(".gallery a");
 gallery.on('show.simplelightbox', function () {
 	preventDefault()
 });
 gallery.refresh()
+galleryGrid.addEventListener("click", preventDefault()) */
 
-/* galleryGrid.addEventListener("click", preventDefault()) */
+function instance(event){
+  event.preventDefault();
+  const imageSource = event.target.dataset.source
+  let moddal = basicLightbox.create(`
+  <img src="${imageSource}"/>
+  `);
+  moddal.show();
+  document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+          moddal.close()
+      }
+    })
+  }
+  galleryGrid.addEventListener("click", instance);
