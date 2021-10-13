@@ -66,10 +66,10 @@ async function fetchNextImage(searchValue) {
 catch(error){console.log(error.status)}}; 
 moreBtn.addEventListener("click", async() => {
   let arr = await fetchNextImage()
+  if(page==13){Notiflix.Notify.failure(`We're sorry, but you've viewed all 500 photos`)}
   renderUserListItems(arr);
   page += 1;
   console.log(page)
-  if(page==13){Notiflix.Notify.failure(`We're sorry, but you've viewed all 500 photos`)}
 });
 function instance(event){
   event.preventDefault();
