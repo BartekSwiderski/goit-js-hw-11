@@ -69,7 +69,7 @@ moreBtn.addEventListener("click", async() => {
   renderUserListItems(arr);
   page += 1;
   console.log(page)
-  if(page==15){Notiflix.Notify.failure(`We're sorry, but you've reached the end of search results.`)}
+  if(page==15){Notiflix.Notify.failure(`We're sorry, but you've viewed all 500 photos`)}
 });
 function instance(event){
   event.preventDefault();
