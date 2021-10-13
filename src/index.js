@@ -69,7 +69,7 @@ moreBtn.addEventListener("click", async() => {
   renderUserListItems(arr);
   page += 1;
   console.log(page)
-  if(page==14){Notiflix.Notify.failure(`We're sorry, but you've viewed all 500 photos`)}
+  if(page==13){Notiflix.Notify.failure(`We're sorry, but you've viewed all 500 photos`)}
 });
 function instance(event){
   event.preventDefault();
